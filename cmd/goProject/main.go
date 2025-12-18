@@ -4,7 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Gelzamia/goProgect/internal/handler"
+	"github.com/Gelzamia/goProject/internal/config"
+	"github.com/Gelzamia/goProject/internal/handler"
 )
 
 func main() {
@@ -14,4 +15,7 @@ func main() {
 
 	log.Println("Server started on :8080")
 	log.Fatal(http.ListenAndServe(":8080", mux))
+	cfg := config.Load()
+	http.ListenAndServe(":"+cfg.Port, mux)
+
 }
